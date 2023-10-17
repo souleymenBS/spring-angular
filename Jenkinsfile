@@ -23,21 +23,21 @@ pipeline {
         }
         stage ("install Angular dependencies") {
             steps {
-                dir("angular-app") {
+                dir("spring-angular/angular-app") {
                     sh 'npm install'
                 }
             }
         }
         stage ("build Angular project") {
             steps {
-                dir("angular-app") {
+                dir("spring-angular/angular-app") {
                     sh 'npx ng build --prod'
                 }
             }
         }
         stage ("generate backend image") {
             steps {
-                dir("springboot/app") {
+                dir("spring-angular/springboot/app") {
                     sh "mvn clean install"
                     sh "docker build -t spring-angular ."
                 }
@@ -45,14 +45,14 @@ pipeline {
         }
         stage ("generate frontend image") {
             steps {
-                dir("angular-app") {
+                dir("spring-angular/angular-app") {
                     sh '''docker build -t angular-frontend -f Dockerfile .'''
                 }
             }
         }
         stage ("run docker compose") { 
             steps {
-                dir("spring-angular") {
+                dir("spring-angular/spring-angular") {
                     sh "docker compose up -d"
                 }
             }
