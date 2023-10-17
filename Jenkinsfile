@@ -31,7 +31,7 @@ pipeline {
         stage ("build Angular project") {
             steps {
                 dir("angular-frontend") {
-                    sh "ng build --prod"
+                    sh './node_modules/.bin/ng build --prod'
                 }
             }
         }
