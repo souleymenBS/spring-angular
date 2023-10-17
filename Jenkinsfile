@@ -13,7 +13,7 @@ pipeline {
         }
         stage ("clone backend repo") {
             steps {
-                sh "git clone https://github.com/souleymenBS/back-spring.git"
+                sh "git clone https://github.com/souleymenBS/spring-angular.git"
             }
         }
        
