@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+
+  mysql-db:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: demo
+    volumes:
+      - db-data:/var/lib/mysql
+
+  spring-angular-backend:
+    image: spring-angular:latest
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/demo
+    ports:
+      - "8081:8081"
+    depends_on:
+      - mysql-db
+
+  angular-frontend:
+    image: angular-frontend:latest
+    ports:
+      - "80:80"
+
+volumes:
+  db-data:
