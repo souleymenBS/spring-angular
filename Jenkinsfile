@@ -13,7 +13,7 @@ pipeline {
         }
         stage ("clone backend repo") {
             steps {
-                sh "git clone https://github.com/souleymenBS/back-spring.git springboot/app"
+                sh "git clone https://github.com/souleymenBS/back-spring.git springboot"
             }
         }
         stage ("clone frontend repo") {
@@ -23,14 +23,14 @@ pipeline {
         }
         stage ("install Angular dependencies") {
             steps {
-                dir("spring-angular/angular-app") {
+                dir("angular-app") {
                     sh 'npm install'
                 }
             }
         }
         stage ("build Angular project") {
             steps {
-                dir("spring-angular/angular-app") {
+                dir("angular-app") {
                     sh 'npx ng build --prod'
                 }
             }
@@ -45,14 +45,14 @@ pipeline {
         }
         stage ("generate frontend image") {
             steps {
-                dir("spring-angular/angular-app") {
+                dir("angular-app") {
                     sh '''docker build -t angular-frontend -f Dockerfile .'''
                 }
             }
         }
         stage ("run docker compose") { 
             steps {
-                dir("spring-angular/spring-angular") {
+                dir("spring-angular") {
                     sh "docker compose up -d"
                 }
             }
