@@ -28,7 +28,7 @@ pipeline {
         }
         stage ("build Angular project") {
             steps {
-                dir("pring-angular/angular-app") {
+                dir("spring-angular/angular-app") {
                     sh 'npx ng build --prod'
                 }
             }
