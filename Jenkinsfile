@@ -24,7 +24,7 @@ pipeline {
         stage ("install Angular dependencies") {
             steps {
                 dir("angular-app") {
-                    sh "npm install"
+                    sh "npm install --save-dev @angular/cli"
                 }
             }
         }
