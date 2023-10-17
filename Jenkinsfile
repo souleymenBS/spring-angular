@@ -26,13 +26,7 @@ pipeline {
                 }
             }
         }
-        stage ("build Angular project") {
-            steps {
-                dir("spring-angular/angular-app") {
-                    sh 'npx ng build --prod'
-                }
-            }
-        }
+    
         stage ("generate backend image") {
             steps {
                 dir("spring-angular/springboot/app") {
