@@ -22,7 +22,7 @@ services:
   angular-frontend:
     image: angular-frontend:latest
     ports:
-      - "80:80"
+      - "0.0.0.0:4200:4200"
 
 volumes:
   db-data:
