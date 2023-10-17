@@ -23,14 +23,14 @@ pipeline {
         }
         stage ("install Angular dependencies") {
             steps {
-                dir("angular-frontend") {
+                dir("angular-app") {
                     sh "npm install"
                 }
             }
         }
         stage ("build Angular project") {
             steps {
-                dir("angular-frontend") {
+                dir("angular-app") {
                     sh './node_modules/.bin/ng build --prod'
                 }
             }
